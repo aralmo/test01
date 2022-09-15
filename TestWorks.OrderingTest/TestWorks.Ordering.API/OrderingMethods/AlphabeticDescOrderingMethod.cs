@@ -11,7 +11,7 @@ namespace TestWorks.Ordering.API.OrderingMethods
     {
         public string Name => "AlphabeticDesc";
 
-        public Task<string> Order(string input)
-            => Task.FromResult(string.Join(" ", input.Split(' ').OrderByDescending(word => word)));
+        public Task<string[]> Order(string input)
+            => Task.FromResult(input.Split(' ').OrderByDescending(word => word).ToArray());
     }
 }

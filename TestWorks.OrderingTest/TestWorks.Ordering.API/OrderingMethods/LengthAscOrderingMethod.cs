@@ -10,7 +10,7 @@ namespace TestWorks.Ordering.API.OrderingMethods
     {
         public string Name => "LengthAsc";
 
-        public Task<string> Order(string input)
-            => Task.FromResult(String.Join(" ", input.Split(' ').OrderBy(word => word.Length)));
+        public Task<string[]> Order(string input)
+            => Task.FromResult(input.Split(' ').OrderBy(word => word.Length).ToArray());
     }
 }

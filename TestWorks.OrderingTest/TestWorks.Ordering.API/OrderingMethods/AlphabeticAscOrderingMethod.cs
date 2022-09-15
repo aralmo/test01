@@ -10,7 +10,7 @@ namespace TestWorks.Ordering.API.OrderingMethods
     {
         public string Name => "AlphabeticAsc";
 
-        public Task<string> Order(string input)
-            => Task.FromResult(string.Join(" ", input.Split(' ').OrderBy(word => word)));
+        public Task<string[]> Order(string input)
+            => Task.FromResult(input.Split(' ').OrderBy(word => word).ToArray());
     }
 }

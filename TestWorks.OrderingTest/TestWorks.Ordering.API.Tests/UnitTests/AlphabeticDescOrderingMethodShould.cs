@@ -22,8 +22,8 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
         [TestMethod]
         public async Task ReturnOrderedWordsInDescendingOrder()
         {
-            (await method.Order("1word 3word 2word")).Should().Be("3word 2word 1word");
-            (await method.Order("cword aword bword")).Should().Be("cword bword aword");
+            (await method.Order("1word 3word 2word")).Should().BeEquivalentTo("3word 2word 1word".Split(' '));
+            (await method.Order("cword aword bword")).Should().BeEquivalentTo("cword bword aword".Split(' '));
         }
     }
 }
