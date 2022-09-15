@@ -10,6 +10,5 @@ namespace TestWorks.Ordering.API.OrderingMethods
     {
         public Task<string> Order(string input)
             => Task.FromResult(String.Join(" ", input.Split(' ').OrderBy(word => word.Length)));
-    
     }
 }
