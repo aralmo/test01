@@ -14,6 +14,13 @@ namespace TestWorks.Ordering.API.OrderingMethods
             this.orderingMethods = orderingMethods;
         }
 
-        public IEnumerable<string> AllKeys => throw new NotImplementedException();
+        public IEnumerable<string> AllKeys
+            => orderingMethods.Select(om => om.Name);
+
+        public IOrderingMethod GetByKey(string key)
+            => orderingMethods
+            .FirstOrDefault(om => string.Compare(om.Name, key, true) == 0)
+            ?? throw new ArgumentException($"ordering method {key} not found", nameof(key));
+        
     }
 }

@@ -13,15 +13,17 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
     [TestClass]
     public class OrderingMethodsRegistryShould
     {
+        static IOrderingMethodsRegistry registry = 
+            new OrderingMethodsRegistry(new IOrderingMethod[]
+            {
+                    mockMethod("methodA"),
+                    mockMethod("methodB")
+            });
+
+
         [TestMethod]
         public void ReturnKeysFromRegisteredOrderingMethods()
         {
-            var registry = new OrderingMethodsRegistry(new IOrderingMethod[]
-            {
-                mockMethod("methodA"),
-                mockMethod("methodB")
-            });
-
             registry.AllKeys.Should().BeEquivalentTo(new string[]
             {
                 "methodA",
@@ -29,7 +31,27 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
             });
         }
 
-        IOrderingMethod mockMethod(string name)
+        [TestMethod]
+        public void RetrieveOrderingMethodRegardlessOfCasing()
+        {
+            var result = registry.GetByKey("Methoda");
+            result.Should().NotBeNull();
+            result.Name.Should().Be("methodA");
+
+            result = registry.GetByKey("MethodB");
+            result.Should().NotBeNull();
+            result.Name.Should().Be("methodB");
+        }
+
+        [TestMethod]
+        public void ThrowArgumentExceptionOnMissingMethod()
+        {            
+            registry
+                .Invoking(reg => reg.GetByKey("nonExisting"))
+                .Should().Throw<ArgumentException>("Should have thrown an argument exception on missing ordering method");
+        }
+
+        static IOrderingMethod mockMethod(string name)
         {
             var method = new Mock<IOrderingMethod>();
             method.Setup(m => m.Name).Returns(name);

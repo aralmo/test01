@@ -8,5 +8,7 @@ namespace TestWorks.Ordering.API.OrderingMethods
     public interface IOrderingMethodsRegistry
     {
         IEnumerable<string> AllKeys { get; }
+
+        IOrderingMethod GetByKey(string key);
     }
 }
