@@ -38,5 +38,11 @@ namespace TestWorks.Ordering.API.Controllers
                 Words = await method.Order(request.TextToOrder)
             };
         }
+
+        [HttpPost, Route("stats")]
+        public async Task<GetStatisticsResponse> GetStatistics(GetStatisticsRequest request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

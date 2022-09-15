@@ -119,6 +119,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\OrderingControllerShould.cs" />
     <Compile Include="UnitTests\OrderingMethodsRegistryShould.cs" />
+    <Compile Include="UnitTests\TextAnalyzerShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
