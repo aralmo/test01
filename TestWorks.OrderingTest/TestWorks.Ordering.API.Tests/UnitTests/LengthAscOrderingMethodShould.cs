@@ -22,7 +22,7 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
         [TestMethod]
         public async Task ReturnWordsOrderedByAscendingLength()
         {
-            (await method.Order("evenlongerword word longerword"))
+            (await method.Order("evenlongerword word\nlongerword"))
                 .Should().BeEquivalentTo("word longerword evenlongerword".Split(' '));
         }
     }

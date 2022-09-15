@@ -22,7 +22,7 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
         [TestMethod]
         public async Task ReturnOrderedWordsInDescendingOrder()
         {
-            (await method.Order("1word 3word 2word"))
+            (await method.Order("1word 3word\n2word"))
                 .Should().BeEquivalentTo("3word 2word 1word".Split(' '));
 
             (await method.Order("cword aword bword"))

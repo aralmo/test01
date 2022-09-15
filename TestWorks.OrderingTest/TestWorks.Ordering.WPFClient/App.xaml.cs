@@ -16,6 +16,8 @@ namespace TestWorks.Ordering.WPFClient
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            new WordsOrderingWindow().Show();
         }
     }
 }

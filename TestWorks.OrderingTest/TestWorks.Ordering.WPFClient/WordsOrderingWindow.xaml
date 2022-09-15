@@ -1,0 +1,22 @@
+﻿<Window x:Class="TestWorks.Ordering.WPFClient.WordsOrderingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestWorks.Ordering.WPFClient"
+        mc:Ignorable="d"
+        Title="WordsOrderingWindow" Height="378" Width="677">
+    <Grid Height="361" VerticalAlignment="Top" IsEnabled="False">
+        <Label Content="Insert a text and an operation to perform." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="657" Height="169"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,240,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="104" Width="657">
+            <TextBlock.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </TextBlock.Background>
+        </TextBlock>
+        <Button Content="Analyze Input" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="99"/>
+        <ComboBox HorizontalAlignment="Left" Margin="231,215,0,0" VerticalAlignment="Top" Width="120" Height="20"/>
+        <Button Content="Order Words" HorizontalAlignment="Left" Margin="127,215,0,0" VerticalAlignment="Top" Width="99"/>
+        <Grid/>
+    </Grid>
+</Window>

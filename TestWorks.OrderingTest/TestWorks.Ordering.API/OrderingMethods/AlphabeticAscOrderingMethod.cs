@@ -11,6 +11,6 @@ namespace TestWorks.Ordering.API.OrderingMethods
         public string Name => "AlphabeticAsc";
 
         public Task<string[]> Order(string input)
-            => Task.FromResult(input.Split(' ').OrderBy(word => word).ToArray());
+            => Task.FromResult(input.SplitWords().OrderBy(word => word).ToArray());
     }
 }
