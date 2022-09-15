@@ -8,6 +8,8 @@ namespace TestWorks.Ordering.API.OrderingMethods
 {
     internal class AlphabeticAscOrderingMethod : IOrderingMethod
     {
+        public string Name => "AlphabeticAsc";
+
         public Task<string> Order(string input)
             => Task.FromResult(string.Join(" ", input.Split(' ').OrderBy(word => word)));
     }

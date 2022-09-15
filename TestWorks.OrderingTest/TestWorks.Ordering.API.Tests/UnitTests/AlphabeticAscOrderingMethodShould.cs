@@ -7,12 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using TestWorks.Ordering.API.OrderingMethods;
 
-namespace TestWorks.Ordering.API.Tests.OrderingMethods
+namespace TestWorks.Ordering.API.Tests.UnitTests
 {
     [TestClass]
     public class AlphabeticAscOrderingMethodShould
     {
         static IOrderingMethod method = new AlphabeticAscOrderingMethod();
+
+        [TestMethod]
+        public void BeNamed()
+            => method.Name.Should().Be("AlphabeticAsc");
 
         [TestMethod]
         public async Task ReturnOrderedWordsInAscendingOrder()
