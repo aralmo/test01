@@ -12,12 +12,23 @@ using System.Web.Http.Controllers;
 using TestWorks.Ordering.API.Controllers;
 using TestWorks.Ordering.API.Models;
 using TestWorks.Ordering.API.OrderingMethods;
+using TestWorks.Ordering.API.TextAnalysis;
 
 namespace TestWorks.Ordering.API.Tests.UnitTests
 {
     [TestClass]
     public class OrderingControllerShould
     {
+        Mock<ITextAnalyzer> textAnalyzerMock;
+        ITextAnalyzer textAnalyzer;
+
+        [TestInitialize]
+        public void Initializer()
+        {
+            textAnalyzerMock = new Mock<ITextAnalyzer>();
+            textAnalyzer = textAnalyzerMock.Object;
+        }
+
         [TestMethod]
         public void ReturnOptionsFromOptionsRegistry()
         {
@@ -29,7 +40,7 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
             };
             registryMock.Setup(m => m.AllKeys).Returns(methods);
 
-            var controller = new OrderingController(registryMock.Object);
+            var controller = new OrderingController(registryMock.Object, textAnalyzer);
 
             controller
                 .GetOptions().Options
@@ -44,7 +55,7 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
             var registryMock = new Mock<IOrderingMethodsRegistry>();
             registryMock.Setup(m => m.AllKeys).Returns(new string[0]);
 
-            var controller = new OrderingController(registryMock.Object);
+            var controller = new OrderingController(registryMock.Object, textAnalyzer);
 
             await controller
                 .Invoking(c => c.GetOrderedWords(new GetOrderedWordsRequest()
@@ -74,7 +85,7 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
 
             var registry = new OrderingMethodsRegistry(new IOrderingMethod[] { optionA.Object, optionB.Object });
 
-            var controller = new OrderingController(registry);
+            var controller = new OrderingController(registry, textAnalyzer);
 
             //assert 
 
@@ -86,6 +97,17 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
             });
 
             result.Words.Should().BeEquivalentTo(new string[] { "optionB" });
+        }
+
+        [TestMethod]
+        public async Task UseTheInjectedAnalyzer()
+        {
+            var controller = new OrderingController(new Mock<IOrderingMethodsRegistry>().Object, textAnalyzer);
+
+            await controller.GetStatistics(new GetStatisticsRequest() { TextToAnalyze = "tta"});
+
+            textAnalyzerMock.Verify(ta => ta.AnalyzeText("tta"));
+
         }
     }
 }
