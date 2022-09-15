@@ -19,8 +19,7 @@ namespace TestWorks.Ordering.API.OrderingMethods
 
         public IOrderingMethod GetByKey(string key)
             => orderingMethods
-            .FirstOrDefault(om => string.Compare(om.Name, key, true) == 0)
-            ?? throw new ArgumentException($"ordering method {key} not found", nameof(key));
+            .FirstOrDefault(om => string.Compare(om.Name, key, true) == 0);
         
     }
 }

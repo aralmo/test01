@@ -44,11 +44,9 @@ namespace TestWorks.Ordering.API.Tests.UnitTests
         }
 
         [TestMethod]
-        public void ThrowArgumentExceptionOnMissingMethod()
-        {            
-            registry
-                .Invoking(reg => reg.GetByKey("nonExisting"))
-                .Should().Throw<ArgumentException>("Should have thrown an argument exception on missing ordering method");
+        public void ReturnNullOnMissingMethod()
+        {
+            registry.GetByKey("nonExisting").Should().BeNull();
         }
 
         static IOrderingMethod mockMethod(string name)

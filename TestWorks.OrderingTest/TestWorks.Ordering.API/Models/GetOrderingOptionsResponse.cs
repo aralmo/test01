@@ -2,7 +2,7 @@
 
 namespace TestWorks.Ordering.API.Models
 {
-    public struct OrderingOptions
+    public struct GetOrderingOptionsResponse
     {
         public IEnumerable<string> Options;
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -18,12 +19,24 @@ namespace TestWorks.Ordering.API.Controllers
             this.registry = registry;
         }
 
-        [Route("options")]
-        public OrderingOptions GetOptions()
-            => new OrderingOptions()
+        [HttpGet, Route("options")]
+        public GetOrderingOptionsResponse GetOptions()
+            => new GetOrderingOptionsResponse()
             {
                 Options = registry.AllKeys
             };
+        
+        [HttpPost, Route("order")]
+        public async Task<GetOrderedWordsResponse> GetOrderedWords(GetOrderedWordsRequest request)
+        {
+            var method = 
+                registry.GetByKey(request.OrderOption) ?? 
+                throw new ArgumentException($"{request.OrderOption} is not a valid option", nameof(request.OrderOption));
 
+            return new GetOrderedWordsResponse()
+            {
+                Words = await method.Order(request.TextToOrder)
+            };
+        }
     }
 }

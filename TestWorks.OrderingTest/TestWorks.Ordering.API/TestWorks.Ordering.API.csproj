@@ -149,7 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\OrderingController.cs" />
-    <Compile Include="Models\OrderingOptions.cs" />
+    <Compile Include="Models\GetOrderedWordsRequest.cs" />
+    <Compile Include="Models\GetOrderedWordsResponse.cs" />
+    <Compile Include="Models\GetOrderingOptionsResponse.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
