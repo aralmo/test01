@@ -105,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OrderingMethods\AlphabeticAscOrderingMethodShould.cs" />
+    <Compile Include="OrderingMethods\AlphabeticDescOrderingMethodShould.cs" />
+    <Compile Include="OrderingMethods\LengthAscOrderingMethodShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

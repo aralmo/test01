@@ -154,7 +154,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="OrderingMethods\AlphabeticAscOrderingMethod.cs" />
+    <Compile Include="OrderingMethods\AlphabeticDescOrderingMethod.cs" />
     <Compile Include="OrderingMethods\IOrderingMethod.cs" />
+    <Compile Include="OrderingMethods\LengthAscOrderingMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
